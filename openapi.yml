@@ -1,0 +1,75 @@
+info:
+  title: Untitled service
+  version: 1.0.0
+openapi: 3.1.0
+paths:
+  /:
+    get:
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Get200ResponseBody"
+  /users:
+    get:
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/GetUsers200ResponseBody"
+  /users/create:
+    post:
+      responses:
+        "201":
+          description: 201 response
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/PostUsersCreate201ResponseBody"
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/PostUsersCreateRequestBody"
+components:
+  schemas:
+    Get200ResponseBody:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message
+    GetUsers200ResponseBody:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          name:
+            type: string
+        required:
+          - id
+          - name
+    PostUsersCreateRequestBody:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+    PostUsersCreate201ResponseBody:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+      required:
+        - id
+        - name
